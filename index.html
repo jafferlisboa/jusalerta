@@ -1,1 +1,307 @@
-oi teste jaffer
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NotificADV • Receba no WhatsApp</title>
+<meta name="theme-color" content="#0e1a2b">
+
+<style>
+/* ---------------- Base / Reset ---------------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  color:#eaf6ff;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* ---------------- Animated Gradient Background ---------------- */
+:root{
+  --c1:#0b1022;   /* deep navy */
+  --c2:#0f2743;   /* blue charcoal */
+  --c3:#101d35;
+  --mint:#21e6a7;
+  --mint-2:#17c78f;
+  --mint-3:#15b07f;
+  --fg:#eaf6ff;
+  --card:#102238aa;
+  --glass:#0f1e34b3;
+  --shadow:rgba(0,0,0,.55);
+}
+
+.bg{
+  position:fixed; inset:0;
+  background: radial-gradient(1200px 900px at 15% 10%, #1c345f55, transparent 60%),
+              radial-gradient(1000px 800px at 85% 90%, #0e5d4a55, transparent 60%),
+              linear-gradient(120deg, var(--c1), var(--c2), var(--c3), var(--c1));
+  background-size: 100% 100%, 100% 100%, 400% 400%;
+  animation: gradientShift 20s ease-in-out infinite;
+  z-index:-3;
+}
+/* subtle animated blobs */
+.bg::before, .bg::after{
+  content:""; position:absolute; border-radius:50%;
+  filter: blur(60px);
+  opacity:.55; mix-blend-mode:screen;
+}
+.bg::before{
+  width:420px;height:420px; left:-120px; top:-120px;
+  background: radial-gradient(circle at 40% 40%, #21e6a7 0%, #1ea27f 40%, transparent 70%);
+  animation: blob 18s ease-in-out infinite;
+}
+.bg::after{
+  width:560px;height:560px; right:-160px; bottom:-160px;
+  background: radial-gradient(circle at 60% 60%, #5dd6ff 0%, #2e79f3 45%, transparent 70%);
+  animation: blob 22s ease-in-out infinite reverse;
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%,0% 50%,0% 50%}
+  50%{background-position:0% 50%,0% 50%,100% 50%}
+  100%{background-position:0% 50%,0% 50%,0% 50%}
+}
+@keyframes blob{
+  0%,100%{transform: translate3d(0,0,0) scale(1)}
+  50%{transform: translate3d(40px,30px,0) scale(1.15)}
+}
+
+/* ---------------- Layout ---------------- */
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 28px);
+}
+.header{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+}
+.logo{
+  width:76px; height:76px; object-fit:contain; border-radius:50%;
+  filter: drop-shadow(0 8px 24px var(--shadow));
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform: translateY(0)}
+  50%{transform: translateY(-6px)}
+}
+.brand{
+  font-weight:800; letter-spacing:.3px;
+  font-size: clamp(24px, 4.8vw, 36px);
+  background: linear-gradient(180deg, #e8faff 0%, #a9e6ff 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 2px 14px rgba(0,0,0,.15);
+}
+
+/* Hero */
+.hero{
+  margin-top: clamp(12px, 4vw, 22px);
+  background: linear-gradient(180deg, #0e1f37aa, #0b1a2eaa);
+  border:1px solid #1f3557;
+  box-shadow: 0 20px 60px var(--shadow), inset 0 0 0 1px #23487055;
+  border-radius: 22px;
+  padding: clamp(18px, 5vw, 30px);
+  backdrop-filter: blur(8px);
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:""; position:absolute; inset:-1px;
+  pointer-events:none;
+  background: conic-gradient(from 90deg at 50% 50%, #21e6a722 0turn, transparent .15turn, transparent .85turn, #21e6a722 1turn);
+  mask: radial-gradient(80% 80% at 50% 50%, transparent 53%, #000 55%);
+  animation: spin 12s linear infinite;
+}
+@keyframes spin{to{transform:rotate(1turn)}}
+
+.kicker{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.9rem; color:#bde9ff; background:#163052; padding:6px 12px;
+  border-radius:999px; border:1px solid #254a74; box-shadow: inset 0 0 0 1px #28507d;
+}
+.kicker .dot{width:6px;height:6px;border-radius:50%;background:#21e6a7;box-shadow:0 0 8px #21e6a7cc}
+
+h1{
+  font-size: clamp(22px, 6.2vw, 40px);
+  line-height:1.15; margin:14px 0 10px; font-weight:900;
+}
+.sub{
+  font-size: clamp(15px, 3.9vw, 18px);
+  color:#cfe8ff; opacity:.95;
+}
+
+/* CTA WhatsApp */
+.cta-wrap{
+  display:grid; place-items:center;
+  margin: 18px 0 6px;
+}
+.whats{
+  --glow: drop-shadow(0 0 14px rgba(33,230,167,.3)) drop-shadow(0 8px 22px rgba(0,0,0,.45));
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  background: linear-gradient(180deg, var(--mint), var(--mint-2));
+  color:#072318; font-weight:800; text-decoration:none;
+  padding:14px 22px; border-radius:999px; font-size: clamp(15px,4.4vw,18px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.45);
+  filter: var(--glow);
+  border: 0; position:relative; isolation:isolate;
+  transition: transform .15s ease, filter .2s ease, box-shadow .2s ease;
+}
+.whats::before{
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  background: radial-gradient(120% 200% at 0% 0%, #ffffff55, transparent 35%),
+              radial-gradient(120% 200% at 100% 100%, #00000020, transparent 40%);
+  mix-blend-mode: overlay; pointer-events:none;
+}
+.whats:hover{ transform:translateY(-2px) scale(1.02) }
+.whats:active{ transform:translateY(0) scale(.995) }
+.whats .wave{ display:inline-block; animation: wiggle .9s ease-in-out infinite }
+@keyframes wiggle{
+  0%,100%{transform: rotate(0deg)}
+  25%{transform: rotate(8deg)}
+  50%{transform: rotate(0deg)}
+  75%{transform: rotate(-8deg)}
+}
+.small-note{margin-top:10px; color:#a4d7ff; font-size:.95rem}
+
+/* Instagram Embed Card (with graceful fallback) */
+.section{
+  margin-top: clamp(18px, 6vw, 36px);
+}
+.card{
+  background: linear-gradient(180deg, #0d203a, #0b1b30);
+  border:1px solid #173554;
+  border-radius:18px;
+  padding: clamp(14px, 4.6vw, 22px);
+  box-shadow: 0 18px 52px var(--shadow), inset 0 0 0 1px #21426244;
+  position:relative; overflow:hidden;
+}
+.card h2{
+  font-size: clamp(18px, 5.2vw, 24px);
+  margin-bottom: 12px;
+}
+.ig-embed{
+  position:relative; width:100%; aspect-ratio: 9 / 12;
+  border-radius:14px; overflow:hidden;
+  border:1px solid #2b507a; background:#0c1b2f;
+}
+.ig-embed iframe{
+  position:absolute; inset:0; width:100%; height:100%;
+  border:0; background:#0c1b2f;
+}
+
+/* fallback notice if iframe fails (many browsers block IG profile iframes) */
+.ig-fallback{
+  position:absolute; inset:0; display:grid; place-items:center;
+  padding:14px; text-align:center; gap:8px;
+  background: linear-gradient(160deg, #0e2644 0%, #0b1a2f 100%);
+  color:#cfe8ff; border-radius:14px;
+  opacity:0; pointer-events:none; transition:opacity .35s ease;
+}
+.ig-embed:has(iframe[onload="this.dataset.ok='1'"][data-ok="0"]) .ig-fallback{opacity:1; pointer-events:auto} /* progressive enhancement */
+
+.fallback-btn{
+  display:inline-block; text-decoration:none; color:#072318; font-weight:800;
+  background: linear-gradient(180deg, var(--mint), var(--mint-3));
+  padding:10px 16px; border-radius:999px;
+}
+
+/* Footer */
+.footer{
+  opacity:.85; font-size:.9rem; text-align:center;
+  padding: 22px 10px 34px;
+}
+
+/* Decorative floating particles (pure CSS) */
+.sparkle{
+  position:fixed; inset:0; pointer-events:none; z-index:-2;
+  background-image:
+   radial-gradient(2px 2px at 10% 20%, #ffffff77 40%, transparent 41%),
+   radial-gradient(1.5px 1.5px at 40% 80%, #b1fff077 40%, transparent 41%),
+   radial-gradient(1.7px 1.7px at 75% 30%, #ffffff77 40%, transparent 41%),
+   radial-gradient(1.2px 1.2px at 85% 65%, #b1fff077 40%, transparent 41%);
+  background-repeat:no-repeat;
+  animation: twinkle 6s ease-in-out infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:.35; transform: translateY(0)}
+  50%{opacity:.7; transform: translateY(-6px)}
+}
+
+/* Desktop tweaks */
+@media (min-width: 900px){
+  .hero{display:grid; grid-template-columns: 1.2fr .8fr; gap:22px; align-items:center}
+  .cta-wrap{justify-content:flex-start}
+  .section .grid{
+    display:grid; grid-template-columns: 1fr 1.1fr; gap:20px; align-items:center;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="sparkle" aria-hidden="true"></div>
+
+<main class="container">
+  <!-- Header -->
+  <header class="header" role="banner">
+    <img class="logo" alt="Logo NotificADV" src="https://i.ibb.co/Cpg1GZK9/transparente.png" width="96" height="96">
+    <div class="brand" aria-label="NotificADV">notificADV</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" role="region" aria-label="Chamada principal">
+    <div>
+      <span class="kicker"><span class="dot"></span> Publicações direto no seu WhatsApp</span>
+      <h1>Chega de perder prazo escondido no e-mail.</h1>
+      <p class="sub">Receba atualizações diárias dos seus processos <strong>direto no WhatsApp</strong>, com lembretes do que vence no dia.</p>
+
+      <div class="cta-wrap">
+        <a class="whats" href="https://wa.me/5567920008280" target="_blank" rel="noopener">
+          <span class="wave">🔔</span> <span> Clique para se cadastrar no WhatsApp </span>
+        </a>
+        <div class="small-note">Clique no botão abaixo para se cadastrar!</div>
+      </div>
+    </div>
+
+    <!-- subtle decorative bell -->
+    <svg aria-hidden="true" viewBox="0 0 240 240" style="width:100%; max-width:280px; margin-inline:auto; opacity:.85; filter:drop-shadow(0 8px 30px rgba(0,0,0,.35));">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#a8e6ff"/>
+          <stop offset="1" stop-color="#78d0ff"/>
+        </linearGradient>
+      </defs>
+      <g fill="url(#g)">
+        <path d="M120 208c12 0 22-7 22-16H98c0 9 10 16 22 16z"/>
+        <path d="M196 168H44c-4 0-8-3-8-7 0-5 4-8 8-10 14-7 18-40 18-64 0-30 26-56 58-56s58 26 58 56c0 24 4 57 18 64 4 2 8 5 8 10 0 4-4 7-8 7z" opacity=".9"/>
+        <circle cx="120" cy="40" r="10" opacity=".9"/>
+      </g>
+    </svg>
+  </section>
+
+  <footer class="footer">
+    © <span id="y"></span> notificADV - Todos os direitos reservados. Desenvolvido por Jaffer Lisboa.
+  </footer>
+</main>
+
+<script>
+  // year
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // little entrance animation
+  const reveal = () => {
+    document.querySelectorAll('.hero, .section .card').forEach((el,i)=>{
+      el.style.opacity=0; el.style.transform='translateY(14px)';
+      setTimeout(()=>{ 
+        el.style.transition='opacity .7s ease, transform .7s ease';
+        el.style.opacity=1; el.style.transform='translateY(0)';
+      }, 120 + i*120);
+    });
+  };
+  if (document.readyState !== 'loading') reveal();
+  else document.addEventListener('DOMContentLoaded', reveal);
+</script>
+</body>
+</html>
