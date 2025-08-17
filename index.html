@@ -33,10 +33,21 @@
 
 <style>* {
   -webkit-tap-highlight-color: transparent;
+}a, a:link, a:visited, a:active, a:hover {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-focus-ring-color: rgba(0,0,0,0);
+  outline: none;
+}a, button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-
+a:focus, button:focus {
+  outline: none;
+}
 /* Evita seleção de texto acidental em botões, links e ícones */
-a, button, .whats, .kicker, .fallback-btn {
+a, button, .whats, .kicker, .fallback-btn {-webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
