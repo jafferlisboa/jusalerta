@@ -31,7 +31,17 @@
   <meta name="twitter:image" content="https://www.notificadv.com/static/ttt.jpg">
 
 
-<style>
+<style>* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Evita seleção de texto acidental em botões, links e ícones */
+a, button, .whats, .kicker, .fallback-btn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 /* ---------------- Base / Reset ---------------- */
 *,*::before,*::after{box-sizing:border-box}
 html,body{height:100%}
