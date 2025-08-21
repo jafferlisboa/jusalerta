@@ -292,10 +292,10 @@ h1{
       <span class="kicker"><span class="dot"></span> Pagamento confirmado</span>
       <h1>Parabéns por assinar o <strong>JusAlerta</strong>! 🎉</h1>
       <p class="sub" id="redir-text" aria-live="polite">
-        Você será redirecionado para o WhatsApp em <strong><span id="count">5</span></strong>.
+        Você será redirecionado para o WhatsApp em <strong><span id="count">10</span></strong>.
       </p>
       <div class="cta-wrap">
-        <a class="whats" id="go-now" href="https://wa.me/55920008280" target="_self" rel="noopener">
+        <a class="whats" id="go-now" href="https://wa.me/5567920008280" target="_self" rel="noopener">
           <span class="wave">🔔</span> <span> Ir para o <i>WhatsApp</i> agora </span>
         </a>
         <div class="small-note">Se o redirecionamento não acontecer, clique no botão acima.</div>
@@ -346,11 +346,11 @@ h1{
 
   // contagem regressiva + redirecionamento
   (function(){
-    const target = "https://wa.me/55920008280";
+    const target = "https://wa.me/5567920008280";
     const countEl = document.getElementById('count');
     const goNow = document.getElementById('go-now');
 
-    let seconds = 5;
+    let seconds = 10;
     countEl.textContent = seconds;
 
     const timer = setInterval(()=>{
@@ -370,7 +370,7 @@ h1{
     });
 
     // Fallback para bloqueadores: força o redirect após ~6s mesmo se o setInterval falhar
-    setTimeout(()=>{ try{ window.location.href = target; }catch(e){} }, 6500);
+    setTimeout(()=>{ try{ window.location.href = target; }catch(e){} }, 11500);
   })();
 </script>
 
@@ -380,7 +380,7 @@ h1{
   </style>
   <div style="max-width:980px;margin:0 auto;padding:16px;color:#cfe8ff;text-align:center">
     O redirecionamento automático requer JavaScript. <br>
-    <a href="https://wa.me/55920008280" style="color:#21e6a7;font-weight:700">Clique aqui para ir ao WhatsApp.</a>
+    <a href="https://wa.me/5567920008280" style="color:#21e6a7;font-weight:700">Clique aqui para ir ao WhatsApp.</a>
   </div>
 </noscript>
 </body>
