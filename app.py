@@ -16,6 +16,15 @@ def termos():
     # Renderiza templates/termos.html
     return render_template("termos.html")
 
+@app.route("/sucesso")
+def termos():
+    # Renderiza templates/termos.html
+    return render_template("sucesso.html")
+
+@app.route("/j")
+def termos():
+    # Renderiza templates/termos.html
+    return render_template("redirect.html")
 
 if __name__ == "__main__":
     # Execução local para desenvolvimento
