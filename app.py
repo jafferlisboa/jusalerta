@@ -17,12 +17,12 @@ def termos():
     return render_template("termos.html")
 
 @app.route("/sucesso")
-def termos():
+def sucesso():
     # Renderiza templates/termos.html
     return render_template("sucesso.html")
 
 @app.route("/j")
-def termos():
+def j():
     # Renderiza templates/termos.html
     return render_template("redirect.html")
 
